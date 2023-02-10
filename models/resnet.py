@@ -36,8 +36,7 @@ class BasicBlock(nn.Module):
         out = self.bn2(self.conv2(out))
         out += self.shortcut(x)
         out = F.relu(out)
-        return F.log_softmax(out, dim=-1)
-
+        return out
 
 class ResNet(nn.Module):
     def __init__(self, block, num_blocks, num_classes=10):
@@ -71,7 +70,7 @@ class ResNet(nn.Module):
         out = out.view(out.size(0), -1)
         out = self.linear(out)
         
-        return F.log_softmax(out, dim=-1)
+        return out
         
 
 def ResNet18():
