@@ -58,7 +58,7 @@ def test_transform_func(mean, std):
 
 
 #gradcam,
-def gradcam_test(dataloader):
+def gradcam_test(dataloader, model):
     running_corrects = 0
     running_loss=0
     pred = []
@@ -97,7 +97,7 @@ def gradcam_test(dataloader):
     return true,pred,image,true_wrong,pred_wrong
 
 # To plot the wrong predictions given by model
-def gradcam_wrong_plot(n_figures,true,ima,pred,encoder, layer):
+def gradcam_wrong_plot(n_figures,true,ima,pred,encoder, layer, model):
     print('Classes in order Actual and Predicted')
     #n_row = int(n_figures/3)
 
@@ -150,7 +150,7 @@ def gradcam_wrong_plot(n_figures,true,ima,pred,encoder, layer):
 
 
 #misclassification code
-def test_missclassified(dataloader, criterion=torch.nn.CrossEntropyLoss()):
+def test_missclassified(dataloader, model, criterion=torch.nn.CrossEntropyLoss()):
     running_corrects = 0
     running_loss=0
     pred = []
