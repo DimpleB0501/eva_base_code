@@ -19,6 +19,9 @@ import torchvision.transforms as transforms
 
 batchsize = 128
 
+classes = ('plane', 'car', 'bird', 'cat',
+           'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
+
 encoder = {}
 for i in range(len(classes)):
     encoder[i] = classes[i]
