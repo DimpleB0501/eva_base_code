@@ -99,7 +99,7 @@ def gradcam_test(dataloader, model, criterion=torch.nn.CrossEntropyLoss()):
     return true,pred,image,true_wrong,pred_wrong
 
 # To plot the wrong predictions given by model
-def gradcam_wrong_plot(n_figures,true,ima,pred,encoder, layer, model, device = torch.device("cuda" if cuda else "cpu")):
+def gradcam_wrong_plot(n_figures,true,ima,pred,encoder, layer, model, device = torch.device("cuda" if cuda else "cpu"), mean, std):
     print('Classes in order Actual and Predicted')
     #n_row = int(n_figures/3)
 
