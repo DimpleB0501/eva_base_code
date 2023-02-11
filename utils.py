@@ -58,7 +58,7 @@ def test_transform_func(mean, std):
 
 
 #gradcam,
-def gradcam_test(dataloader, model):
+def gradcam_test(dataloader, model, criterion=torch.nn.CrossEntropyLoss()):
     running_corrects = 0
     running_loss=0
     pred = []
