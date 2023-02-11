@@ -9,7 +9,7 @@ from tqdm import tqdm
 #do we run a scheduler?
 
 #data split between test and train
-def split_data(batch_size=256):
+def split_data(trainset, testset, batch_size=256):
     # dataloader arguments - something you'll fetch these from cmdprmt
     dataloader_args = dict(shuffle=True, batch_size=256, num_workers=8, pin_memory=True) if cuda else dict(shuffle=True, batch_size=64)
 
