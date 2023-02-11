@@ -148,7 +148,7 @@ def gradcam_wrong_plot(n_figures,true,ima,pred,encoder, layer):
 
 
 #misclassification code
-def test_missclassified(dataloader, criterion):
+def test_missclassified(dataloader, criterion=torch.nn.CrossEntropyLoss()):
     running_corrects = 0
     running_loss=0
     pred = []
@@ -162,7 +162,7 @@ def test_missclassified(dataloader, criterion):
         target = target.type(torch.cuda.LongTensor)
         model.eval()
         output = model(data)
-        loss = F.nll_loss(output, target)
+        loss = criterion(output, target)
         output = sm(output)
         _, preds = torch.max(output, 1)
         running_corrects = running_corrects + torch.sum(preds == target.data)
