@@ -66,7 +66,7 @@ def train(model, device, train_loader, train_acc, train_loss, optimizer, schedul
         correct += pred.eq(target.view_as(pred)).sum().item()
         processed += len(data)
 
-        pbar.set_description(desc= f'Loss={loss.item()} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}% learning_rate={l_rate[-1]:0.95f}')
+        pbar.set_description(desc= f'Loss={loss.item()} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}% learning_rate={l_rate[-1]:0.9f}')
         train_acc.append(100*correct/processed)
 
 # Test loop
