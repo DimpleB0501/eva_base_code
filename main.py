@@ -20,6 +20,10 @@ def split_data_set(trainset, testset, cuda = torch.cuda.is_available(), batch_si
     testloader = torch.utils.data.DataLoader(testset, **dataloader_args)
     return trainloader, testloader
 
+def get_lr(optimizer):
+    for param_group in optimizer.param_groups:
+        return param_group['lr']
+
 # Train loop
 def train(model, device, train_loader, train_acc, train_loss, optimizer, scheduler, l_rate, criterion):
 
