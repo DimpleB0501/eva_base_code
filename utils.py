@@ -19,7 +19,7 @@ import torch.nn as nn
 import torchvision
 import torchvision.transforms as transforms
 
-batchsize = 128
+batchsize = 512
 
 cuda = torch.cuda.is_available()
 
@@ -50,6 +50,25 @@ def train_transform_func(mean, std):
       ]
     )
     return lambda img:train_transform(image=np.array(img))["image"]
+
+# Implement transforms on train set - (RandomCrop 32, 32 (after padding of 4) >> FlipLR >> Followed by CutOut(8, 8))
+def train_transform_func_8(mean, std):
+    train_transform = A.Compose(
+      [
+      #RandomCrop 32, 32 (after padding of 4)
+      #FlipLR -pytorch library similar present as horizontal flip
+      #CutOut(8x8)
+      # Pad 4
+      A.PadIfNeeded(min_height=32+4, min_width=32+4),
+      A.RandomCrop(height = 32, width = 32, always_apply=False, p=1.0),
+      A.HorizontalFlip(p = 0.1),
+      A.Cutout(num_holes=1, max_h_size=8, max_w_size=8,  fill_value=tuple(mean)),
+      A.Normalize(mean=mean, std=std),
+      ToTensorV2(),
+      ]
+    )
+    return lambda img:train_transform(image=np.array(img))["image"]
+
 
 def test_transform_func(mean, std):
     test_transform = transforms.Compose([
