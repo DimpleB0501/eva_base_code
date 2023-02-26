@@ -69,6 +69,14 @@ def train_transform_func_8(mean, std):
     )
     return lambda img:train_transform(image=np.array(img))["image"]
 
+def train_transform_func_9(mean, std):
+    train_transform = A.Compose(
+      [
+      A.Normalize(mean=mean, std=std),
+      ToTensorV2(),
+      ]
+    )
+    return lambda img:train_transform(image=np.array(img))["image"]
 
 def test_transform_func(mean, std):
     test_transform = transforms.Compose([
